@@ -2,6 +2,15 @@ default_language_version:
   python: python3.13
 
 repos:
+  - repo: local
+    hooks:
+      - id: pyright
+        name: pyright
+        entry: uv run pyright --project pyproject.toml quantshark_shared
+        language: system
+        types: [python]
+        pass_filenames: false
+
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.14.14
     hooks:
