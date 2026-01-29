@@ -6,6 +6,11 @@ readme = "README.md"
 requires-python = ">=3.13"
 license = {text = "MIT"}
 dependencies = [
+    "alembic>=1.18.2",
+    "alembic-postgresql-enum>=1.8.0",
+    "psycopg>=3.3.2",
+    "python-dotenv>=1.2.1",
+    "sqlalchemy-timescaledb",
     "sqlmodel>=0.0.31",
 ]
 
@@ -13,9 +18,13 @@ dependencies = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [tool.ruff]
 line-length = 99
 target-version = "py313"
+exclude = ["alembic"]
 
 [tool.ruff.lint]
 select = ["E", "F", "UP", "B", "SIM", "I", "ANN", "Q", "T20", "N", "TID"]
@@ -35,6 +44,9 @@ typeCheckingMode = "basic"
 pythonVersion = "3.13"
 reportMissingImports = true
 reportMissingTypeStubs = false
+
+[tool.uv.sources]
+sqlalchemy-timescaledb = { git = "https://github.com/NikitaPirate/sqlalchemy-timescaledb.git" }
 
 [dependency-groups]
 dev = [
