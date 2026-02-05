@@ -1,10 +1,7 @@
 import os
 from logging.config import fileConfig
 
-# Configure PostgreSQL enum handling
 import alembic_postgresql_enum
-
-# Register TimescaleDB dialect
 import sqlalchemy_timescaledb  # noqa: F401 need for dialect registration
 from alembic.script import ScriptDirectory
 from dotenv import load_dotenv
@@ -24,8 +21,6 @@ from quantshark_shared.models import (  # noqa: F401
 alembic_postgresql_enum.set_configuration(
     alembic_postgresql_enum.Config(force_dialect_support=True)
 )
-
-# Import all models to ensure they're registered with SQLModel
 
 # This is the Alembic Config object
 config = context.config

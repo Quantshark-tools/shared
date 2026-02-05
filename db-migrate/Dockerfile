@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y git python3-dev libpq-dev && rm -rf /va
 
 # Copy project files
 COPY pyproject.toml uv.lock alembic.ini README.md ./
-COPY alembic/ ./alembic/
 COPY quantshark_shared/ ./quantshark_shared/
 
 # Install dependencies
