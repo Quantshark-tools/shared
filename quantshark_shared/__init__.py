@@ -3,8 +3,9 @@
 This package provides data models shared across the application.
 """
 
-from quantshark_shared import models
+from quantshark_shared import models, settings
 
 __all__ = [
     "models",
+    "settings",
 ]

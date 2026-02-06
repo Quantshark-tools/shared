@@ -5,15 +5,15 @@ from contextlib import contextmanager
 from dataclasses import dataclass
 
 import sqlalchemy_timescaledb  # noqa: F401 need for dialect registration
-from alembic import command
 from sqlalchemy import text
 from sqlalchemy.engine import make_url
 from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
 from testcontainers.postgres import PostgresContainer
 
+from alembic import command
 from quantshark_shared.migrations.config import get_alembic_config
 
-DEFAULT_TIMESCALE_IMAGE = "timescale/timescaledb:2.18.1-pg16"
+DEFAULT_TIMESCALE_IMAGE = "timescale/timescaledb:2.23.0-pg18"
 
 
 @dataclass(frozen=True)

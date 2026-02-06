@@ -1,10 +1,8 @@
-import os
 from logging.config import fileConfig
 
 import alembic_postgresql_enum
 import sqlalchemy_timescaledb  # noqa: F401 need for dialect registration
 from alembic.script import ScriptDirectory
-from dotenv import load_dotenv
 from sqlalchemy import engine_from_config, pool
 from sqlmodel import SQLModel
 
@@ -17,6 +15,7 @@ from quantshark_shared.models import (  # noqa: F401
     Quote,
     Section,
 )
+from quantshark_shared.settings import DBSettings
 
 alembic_postgresql_enum.set_configuration(
     alembic_postgresql_enum.Config(force_dialect_support=True)
@@ -35,14 +34,7 @@ target_metadata = SQLModel.metadata
 
 def get_url():
     """Build TimescaleDB connection URL from environment variables."""
-    load_dotenv()
-    host = os.getenv("DB_HOST", "localhost")
-    port = os.getenv("DB_PORT", "5432")
-    user = os.getenv("DB_USER", "postgres")
-    password = os.getenv("DB_PASSWORD", "postgres")
-    dbname = os.getenv("DB_DBNAME", "quantshark")
-
-    return f"timescaledb+psycopg://{user}:{password}@{host}:{port}/{dbname}"
+    return DBSettings().connection_url
 
 
 def process_revision_directives(context, revision, directives):
